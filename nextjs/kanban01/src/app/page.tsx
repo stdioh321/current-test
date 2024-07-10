@@ -14,11 +14,11 @@ export default function Page() {
     <NoSsr>
       <div>
         <header>
-          <h1>Page</h1>
+          <h1>Kanban do matheuzinho</h1>
         </header>
         <main>
           <div className="wrapper">
-            <Board />
+            <Board  />
           </div>
         </main>
       </div>
