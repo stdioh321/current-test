@@ -35,20 +35,20 @@ const handleOnDragUpdate = (result) => {
  */
 const handleOnDragEnd = async (dragEvent) => {
   try {
+    console.log({ dragEvent });
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     await response.json();
-    const forceThrow = Math.random() < 0.5;
-    if (forceThrow) {
-      throw new Error("forceThrow");
-    }
+    const isTrue = Math.random() < 0.5;
+    return isTrue;
   } catch (err) {
     console.error("-----------------------------------------------");
     console.error("handleOnDragEnd: error occurred");
     console.error(err);
     console.error("-----------------------------------------------");
+    throw err;
   }
 };
 
@@ -57,9 +57,9 @@ const App = () => {
     <Container>
       <Board
         data={columnsAndLeads}
+        handleOnDragEnd={handleOnDragEnd}
         handleOnDragStart={handleOnDragStart}
         handleOnDragUpdate={handleOnDragUpdate}
-        handleOnDragEnd={handleOnDragEnd}
       />
     </Container>
   );

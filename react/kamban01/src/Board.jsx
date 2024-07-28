@@ -5,7 +5,7 @@ import Column from "./Column";
 
 const Container = styled.div`
   /* box-shadow: 0 0 0px 20px #FFF inset; */
-  border: 20px #FFF solid;
+  border: 20px #fff solid;
   overflow-x: auto;
 `;
 
@@ -46,7 +46,8 @@ export default function Board({
 
     try {
       onDragEnd(result);
-      await _handleOnDragEnd(result);
+      const response = await _handleOnDragEnd(result);
+      if (!response) throw new Error("Network response was not ok");
     } catch (err) {
       console.error("Error occurred while handling onDragEnd", { err, result });
       setData(currentData);
