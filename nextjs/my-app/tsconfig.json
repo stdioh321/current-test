@@ -5,9 +5,12 @@
       "dom.iterable",
       "esnext"
     ],
+    "disableReferencedProjectLoad": true,
+    "disableSourceOfProjectReferenceRedirect": true,
+    "skipDefaultLibCheck": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -15,6 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "checkJs": false,
     "incremental": true,
     "plugins": [
       {

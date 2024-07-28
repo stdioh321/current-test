@@ -14,7 +14,7 @@ export default function Page() {
     <NoSsr>
       <div>
         <header>
-          <h1>Kanban do matheuzinho</h1>
+          <h1 className="text-2xl font-bold">Kanban do matheuzinho</h1>
         </header>
         <main>
           <div className="wrapper">
