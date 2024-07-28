@@ -1,8 +1,0 @@
-[data-rbd-draggable-id] {
-  transition: all 0.5s;
-}
-
-[data-rbd-draggable-id]:hover {
-  background-color: #c2bdbd;
-  cursor: grab;
-}

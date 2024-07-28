@@ -2,7 +2,7 @@ import Chance from "chance";
 const chance = new Chance();
 
 export const columnsAndLeads = Array.from(
-  { length: chance.integer({ min: 2, max: 5 }) },
+  { length: chance.integer({ min: 2, max: 10 }) },
   (_, i) => ({
     id: chance.guid(),
     title: chance.name(),
