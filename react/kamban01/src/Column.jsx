@@ -19,7 +19,7 @@ const Title = styled.div`
 
 const LeadList = styled.div`
   padding: 8px;
-  max-height: 80vh;
+  max-height: 400px;
   overflow-y: auto;
 `;
 

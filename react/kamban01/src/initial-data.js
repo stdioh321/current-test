@@ -6,11 +6,13 @@ export const columnsAndLeads = Array.from(
   (_, i) => ({
     id: chance.guid(),
     title: chance.name(),
-    leads: Array.from({ length: chance.integer({ min: 2, max: 4 }) }, () => ({
-      id: chance.guid(),
-      // title: chance.sentence({ words: 3 }),
-      title: chance.age({ min: 18, max: 65 }),
-      uniqueValue: chance.floating({ min: 1, max: 100 }),
-    })),
+    leads: Array.from(
+      { length: chance.integer({ min: 2, max: 4 }) },
+      (_, index) => ({
+        id: chance.guid(),
+        title: `${index} ${chance.name()}`,
+        uniqueValue: chance.floating({ min: 1, max: 100 }),
+      })
+    ),
   })
 );
