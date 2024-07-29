@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import Column from "./Column";
 
 const Container = styled.div`
-  /* box-shadow: 0 0 0px 20px #FFF inset; */
   border: 20px #fff solid;
   overflow-x: auto;
 `;
@@ -15,7 +13,71 @@ const Columns = styled.div`
   gap: 30px;
 `;
 
-export default function Board({
+const Column = ({ column, leads }) => {
+  const Container3 = styled.div`
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 300px;
+    min-width: 300px;
+    padding: 8px;
+  `;
+
+  const Title = styled.div`
+    padding: 8px;
+    font-size: 1.4em;
+    color: #0000ff;
+  `;
+
+  const LeadList = styled.div`
+    padding: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+  `;
+
+  const Container4 = styled.div`
+    padding: 8px;
+    border: 3px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 9px;
+    height: 120px;
+  `;
+
+  const LeadCard = ({ lead, index }) => {
+    return (
+      <Draggable key={lead.id} draggableId={lead.id} index={index}>
+        {(provided) => (
+          <Container4
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <div style={{ fontWeight: "bold" }}>{lead.title}</div>
+            <small>R$ {lead.uniqueValue}</small>
+          </Container4>
+        )}
+      </Draggable>
+    );
+  };
+
+  return (
+    <Container3>
+      <Title>{column.title}</Title>
+      <hr />
+      <Droppable droppableId={column.id}>
+        {(provided) => (
+          <LeadList ref={provided.innerRef} {...provided.droppableProps}>
+            {leads.map((lead, index) => (
+              <LeadCard key={lead.id} lead={lead} index={index} />
+            ))}
+            {provided.placeholder}
+          </LeadList>
+        )}
+      </Droppable>
+    </Container3>
+  );
+};
+
+export function Board({
   data: _data,
   handleOnDragEnd: _handleOnDragEnd,
   handleOnDragStart: _handleOnDragStart = () => {},
@@ -59,10 +121,9 @@ export default function Board({
   }, [_data]);
 
   const _ListColumns = data?.map((column) => {
-    return (
-      <Column key={column.id} column={column} leads={column.leads || []} />
-    );
+    return <Column key={column.id} column={column} leads={column.leads || []} />;
   });
+
   return (
     <Container>
       <DragDropContext
@@ -75,3 +136,4 @@ export default function Board({
     </Container>
   );
 }
+

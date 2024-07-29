@@ -1,7 +1,8 @@
 import "./App.scss";
 import { columnsAndLeads } from "./initial-data";
 import styled from "styled-components";
-import Board from "./Board";
+
+import { Board } from "./Board";
 
 const Container = styled.div`
   margin: 8px;
